@@ -13,5 +13,5 @@ func get_spawn_position() -> Vector2:
 	return spawn_point.global_position
 
 func _on_exit_zone_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.name == "MyPlayer":
 		level_completed.emit()

@@ -4,8 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://d1h1vqt81pho1" path="res://assets/sprite-0.png" id="2_k8dvw"]
 [ext_resource type="Script" uid="uid://ct7syob7pc0rl" path="res://nodes/scripts/main.gd" id="3_y2wr3"]
 
-[sub_resource type="GDScript" id="GDScript_hv21c"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2om7a"]
 size = Vector2(7, 7)
 
