@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://buhqecimq6l3j" path="res://nodes/scripts/base_level.gd" id="1_afn3b"]
 [ext_resource type="Texture2D" uid="uid://7ywpd2duen8p" path="res://assets/tileset-ground.png" id="2_hv21c"]
+[ext_resource type="Script" path="res://nodes/scripts/puzzle_button.gd" id="3_btn"]
+[ext_resource type="Texture2D" path="res://assets/tileset-mysc.png" id="4_mysc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2crut"]
 texture = ExtResource("2_hv21c")
@@ -56,6 +58,9 @@ sources/0 = SubResource("TileSetAtlasSource_2crut")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4txx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btn"]
+size = Vector2(16, 16)
+
 [node name="Level1" type="Node2D" unique_id=114785482]
 script = ExtResource("1_afn3b")
 
@@ -73,3 +78,16 @@ position = Vector2(390, 6)
 shape = SubResource("RectangleShape2D_g4txx")
 
 [node name="levelLogic" type="Node2D" parent="." unique_id=295831791]
+
+[node name="PuzzleButton" type="Area2D" parent="levelLogic"]
+position = Vector2(180, -48)
+script = ExtResource("3_btn")
+
+[node name="Sprite2D" type="Sprite2D" parent="levelLogic/PuzzleButton"]
+texture_filter = 1
+texture = ExtResource("4_mysc")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/PuzzleButton"]
+shape = SubResource("RectangleShape2D_btn")
