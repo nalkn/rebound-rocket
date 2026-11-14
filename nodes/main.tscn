@@ -26,6 +26,7 @@ texture = ExtResource("3_ufc4x")
 shape = SubResource("RectangleShape2D_2om7a")
 
 [node name="Camera2D" type="Camera2D" parent="MyPlayer" unique_id=986956675]
+zoom = Vector2(3, 3)
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=164496468]
 
