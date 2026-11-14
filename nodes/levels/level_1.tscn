@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7ywpd2duen8p" path="res://assets/tileset-ground.png" id="2_hv21c"]
 [ext_resource type="Script" path="res://nodes/scripts/puzzle_button.gd" id="3_btn"]
 [ext_resource type="Texture2D" path="res://assets/tileset-mysc.png" id="4_mysc"]
+[ext_resource type="Script" path="res://nodes/scripts/laser_gate.gd" id="5_laser"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2crut"]
 texture = ExtResource("2_hv21c")
@@ -61,6 +62,9 @@ sources/0 = SubResource("TileSetAtlasSource_2crut")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_btn"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laser"]
+size = Vector2(8, 64)
+
 [node name="Level1" type="Node2D" unique_id=114785482]
 script = ExtResource("1_afn3b")
 
@@ -91,3 +95,18 @@ region_rect = Rect2(16, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/PuzzleButton"]
 shape = SubResource("RectangleShape2D_btn")
+
+[node name="LaserGate" type="StaticBody2D" parent="levelLogic" node_paths=PackedStringArray("linked_buttons")]
+position = Vector2(300, -16)
+script = ExtResource("5_laser")
+pass_mode = 1
+linked_buttons = [NodePath("../PuzzleButton")]
+
+[node name="ColorRect" type="ColorRect" parent="levelLogic/LaserGate"]
+offset_left = -4.0
+offset_top = -32.0
+offset_right = 4.0
+offset_bottom = 32.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/LaserGate"]
+shape = SubResource("RectangleShape2D_laser")

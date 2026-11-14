@@ -12,6 +12,8 @@ const REGION_INACTIVE := Rect2(16, 0, 16, 16)
 
 
 func _ready() -> void:
+	collision_layer = 0
+	collision_mask = 4
 	body_entered.connect(_on_body_entered)
 	_update_visual()
 

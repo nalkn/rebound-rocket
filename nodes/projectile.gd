@@ -11,7 +11,9 @@ var bounces := 0
 
 
 func _ready() -> void:
-	# On construit les enfants en code : plus besoin de scène
+	collision_layer = 4  
+	collision_mask = 17  
+
 	var sprite := Sprite2D.new()
 	sprite.texture = TEXTURE
 	add_child(sprite)
