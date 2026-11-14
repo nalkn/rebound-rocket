@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dsk36uu3rrv0b"]
+[gd_scene format=4 uid="uid://dsk36uu3rrv0b"]
 
 [ext_resource type="Script" uid="uid://dbui36ainc6wf" path="res://my_player.gd" id="1_epypp"]
 [ext_resource type="Texture2D" uid="uid://d1h1vqt81pho1" path="res://assets/sprite-0.png" id="1_wtcfe"]
@@ -50,6 +50,6 @@ zoom = Vector2(10, 10)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=944474976]
 texture_filter = 1
-position = Vector2(-4, 5)
-tile_map_data = PackedByteArray(0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0)
+position = Vector2(-8, 3)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAEAAAAFAP//AAABAAAAAAAGAP//AAACAAAAAAAEAAEAAAAAAAEAAAAFAAAAAAABAAEAAAAFAAEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAAGAAAAAAABAAEAAAAGAAEAAAABAAEAAAAHAAAAAAABAAAAAAAHAAEAAAABAAEAAAAIAAAAAAABAAAAAAAIAAEAAAABAAEAAAAJAAEAAAABAAEAAAAJAAAAAAABAAAAAAALAAAAAAABAAAAAAALAAEAAAABAAEAAAAMAAAAAAACAAAAAAAMAAEAAAACAAEAAAA=")
 tile_set = SubResource("TileSet_jfn7u")
