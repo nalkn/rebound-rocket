@@ -4,6 +4,8 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -275.0
 const SFX_SHOOT := preload("res://assets/audio/shoot.wav")
 
+@onready var camera: Camera2D = $Camera2D
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -19,6 +21,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	if camera:
+		camera.offset = camera.offset.lerp(velocity * 0.08, 6.0 * delta)
 	if global_position.y > 220.0:
 		respawn()
 		return

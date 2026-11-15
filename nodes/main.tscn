@@ -26,3 +26,11 @@ shape = SubResource("RectangleShape2D_2om7a")
 
 [node name="Camera2D" type="Camera2D" parent="MyPlayer" unique_id=986956675]
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.08
+drag_top_margin = 0.1
+drag_right_margin = 0.08
+drag_bottom_margin = 0.1
