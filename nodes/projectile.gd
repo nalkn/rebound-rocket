@@ -40,12 +40,7 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 			return
 		velocity = velocity.bounce(collision.get_normal())
-		var sfx := AudioStreamPlayer.new()
-		sfx.stream = SFX_BOUNCE
-		sfx.volume_db = -6.0
-		sfx.finished.connect(sfx.queue_free)
-		get_parent().add_child(sfx)
-		sfx.play()
+		BaseLevel.play_sfx(get_parent(), SFX_BOUNCE, -6.0)
 		bounces += 1
 		var spr := get_child(0) as Sprite2D
 		if spr and bounces == 1:

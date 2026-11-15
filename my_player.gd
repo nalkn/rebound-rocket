@@ -43,13 +43,18 @@ func _draw() -> void:
 		d += 8.0
 
 
-func respawn() -> void:
-	velocity = Vector2.ZERO
+func _get_current_level() -> BaseLevel:
 	var level_container := get_parent().get_node_or_null("LevelContainer")
 	if level_container and level_container.get_child_count() > 0:
-		var level := level_container.get_child(0) as BaseLevel
-		if level:
-			global_position = level.get_spawn_position()
+		return level_container.get_child(0) as BaseLevel
+	return null
+
+
+func respawn() -> void:
+	velocity = Vector2.ZERO
+	var level := _get_current_level()
+	if level:
+		global_position = level.get_spawn_position()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -58,15 +63,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func shoot() -> void:
-	var sfx := AudioStreamPlayer.new()
-	sfx.stream = SFX_SHOOT
-	sfx.finished.connect(sfx.queue_free)
-	add_child(sfx)
-	sfx.play()
+	BaseLevel.play_sfx(self, SFX_SHOOT)
 	var p := Projectile.new()
 	p.direction = (get_global_mouse_position() - global_position).normalized()
 	p.add_collision_exception_with(self)
-	var level_container := get_parent().get_node_or_null("LevelContainer")
-	var target_parent: Node = level_container.get_child(0) if level_container and level_container.get_child_count() > 0 else get_tree().current_scene
+	var level := _get_current_level()
+	var target_parent: Node = level if level else get_tree().current_scene
 	target_parent.add_child(p)
 	p.global_position = global_position
