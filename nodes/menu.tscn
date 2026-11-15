@@ -1,9 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=4 uid="uid://b5fassmhvwsmf"]
 
-[ext_resource type="Script" path="res://nodes/scripts/menu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://dx5472mon8yax" path="res://nodes/scripts/menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://m7k6pspjck1l" path="res://assets/sprite-player.png" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://7ywpd2duen8p" path="res://assets/tileset-ground.png" id="3_ground"]
-[ext_resource type="Texture2D" path="res://assets/sprite-exit-active.png" id="4_exit"]
+[ext_resource type="Texture2D" uid="uid://cbpvt3sggyvyv" path="res://assets/sprite-exit-active.png" id="4_exit"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bg"]
 texture = ExtResource("3_ground")
@@ -13,7 +13,7 @@ texture = ExtResource("3_ground")
 [sub_resource type="TileSet" id="TileSet_bg"]
 sources/0 = SubResource("TileSetAtlasSource_bg")
 
-[node name="Menu" type="Control"]##
+[node name="Menu" type="Control" unique_id=1077019830]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,25 +22,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
-[node name="BackgroundLevel" type="Node2D" parent="."]
+[node name="BackgroundLevel" type="Node2D" parent="." unique_id=1912587937]
 
-[node name="Camera2D" type="Camera2D" parent="BackgroundLevel"]
+[node name="Camera2D" type="Camera2D" parent="BackgroundLevel" unique_id=1694810943]
 position = Vector2(180, -36)
 zoom = Vector2(3, 3)
 
-[node name="Ground" type="TileMapLayer" parent="BackgroundLevel"]
+[node name="Ground" type="TileMapLayer" parent="BackgroundLevel" unique_id=578560459]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wIAAAAAAAIAAAAAAAEAAAABAAAAAAAAAAIAAAABAAIAAAABAAEAAAABAAAAAAABAAIAAAABAAIAAAACAAEAAAABAAAAAAACAAIAAAABAAIAAAADAAEAAAABAAAAAAADAAIAAAABAAIAAAAEAAEAAAABAAAAAAAEAAIAAAABAAIAAAAJAAEAAAABAAAAAAAJAAIAAAABAAIAAAAKAAEAAAABAAAAAAAKAAIAAAABAAIAAAALAAEAAAABAAAAAAALAAIAAAABAAIAAAAMAAEAAAABAAAAAAAMAAIAAAABAAIAAAANAAEAAAABAAAAAAANAAIAAAABAAIAAAAOAAEAAAABAAAAAAAOAAIAAAABAAIAAAAPAAEAAAABAAAAAAAPAAIAAAABAAIAAAAQAAEAAAABAAAAAAAQAAIAAAABAAIAAAARAAEAAAABAAAAAAARAAIAAAABAAIAAAASAAEAAAABAAAAAAASAAIAAAABAAIAAAATAAEAAAABAAAAAAATAAIAAAABAAIAAAAUAAEAAAABAAAAAAAUAAIAAAABAAIAAAAVAAEAAAABAAAAAAAVAAIAAAABAAIAAAAWAAEAAAABAAAAAAAWAAIAAAABAAIAAAAXAAEAAAABAAAAAAAXAAIAAAABAAIAAAAYAAEAAAACAAAAAAAYAAIAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_bg")
 
-[node name="ExitSprite" type="Sprite2D" parent="BackgroundLevel"]
+[node name="ExitSprite" type="Sprite2D" parent="BackgroundLevel" unique_id=1451216014]
 texture_filter = 1
 position = Vector2(320, 8)
 texture = ExtResource("4_exit")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=35039392]
 
-[node name="Background" type="ColorRect" parent="CanvasLayer"]
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=517546690]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,24 +48,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05, 0.06, 0.1, 0.45)
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1135031672]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1206027754]
 layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Logo" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="Logo" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=605935577]
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="ReboundLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo"]
+[node name="ReboundLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo" unique_id=2050203406]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(0.35, 0.2, 0.02, 1)
@@ -77,12 +77,12 @@ theme_override_font_sizes/font_size = 84
 text = "REBOUND"
 horizontal_alignment = 1
 
-[node name="RocketRow" type="HBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo"]
+[node name="RocketRow" type="HBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo" unique_id=1987355566]
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="RLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow"]
+[node name="RLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow" unique_id=531880582]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(0.35, 0.2, 0.02, 1)
@@ -93,11 +93,11 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 84
 text = "R"
 
-[node name="PlayerO" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow"]
+[node name="PlayerO" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow" unique_id=754394351]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 
-[node name="Sprite" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow/PlayerO"]
+[node name="Sprite" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow/PlayerO" unique_id=28874153]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -105,10 +105,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = -52.0
-offset_right = 52.0
-offset_bottom = 52.0
+offset_left = -55.000015
+offset_top = -92.5
+offset_right = 107.057175
+offset_bottom = 69.55719
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.785398
@@ -116,7 +116,7 @@ pivot_offset = Vector2(52, 52)
 texture = ExtResource("2_player")
 stretch_mode = 5
 
-[node name="CketLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow"]
+[node name="CketLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow" unique_id=709174443]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(0.35, 0.2, 0.02, 1)
@@ -127,7 +127,7 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 84
 text = "CKET"
 
-[node name="PlayButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1128830859]
 custom_minimum_size = Vector2(240, 64)
 layout_mode = 2
 size_flags_horizontal = 4
