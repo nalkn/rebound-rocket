@@ -1,0 +1,104 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" uid="uid://buhqecimq6l3j" path="res://nodes/scripts/base_level.gd" id="1_afn3b"]
+[ext_resource type="Texture2D" uid="uid://7ywpd2duen8p" path="res://assets/tileset-ground.png" id="2_hv21c"]
+[ext_resource type="Script" path="res://nodes/scripts/puzzle_button.gd" id="3_btn"]
+[ext_resource type="Texture2D" path="res://assets/tileset-mysc.png" id="4_mysc"]
+[ext_resource type="Script" path="res://nodes/scripts/laser_gate.gd" id="5_laser"]
+[ext_resource type="Script" path="res://nodes/scripts/bounce_pad.gd" id="6_pad"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2crut"]
+texture = ExtResource("2_hv21c")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_hv21c"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_2crut")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4txx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btn"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laser"]
+size = Vector2(8, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pad"]
+size = Vector2(24, 8)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_afn3b")
+
+[node name="map" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wIAAAAAAAIAAAAAAAEAAAABAAAAAAAAAAIAAAABAAIAAAABAAEAAAABAAAAAAABAAIAAAABAAIAAAACAAEAAAABAAAAAAACAAIAAAABAAIAAAADAAEAAAABAAAAAAADAAIAAAABAAIAAAAEAAEAAAABAAAAAAAEAAIAAAABAAIAAAAJAAEAAAABAAAAAAAJAAIAAAABAAIAAAAKAAEAAAABAAAAAAAKAAIAAAABAAIAAAALAAEAAAABAAAAAAALAAIAAAABAAIAAAAMAAEAAAABAAAAAAAMAAIAAAABAAIAAAANAAEAAAABAAAAAAANAAIAAAABAAIAAAAOAAEAAAABAAAAAAAOAAIAAAABAAIAAAAPAAEAAAABAAAAAAAPAAIAAAABAAIAAAAQAAEAAAABAAAAAAAQAAIAAAABAAIAAAARAAEAAAABAAAAAAARAAIAAAABAAIAAAASAAEAAAABAAAAAAASAAIAAAABAAIAAAATAAEAAAABAAAAAAATAAIAAAABAAIAAAAUAAEAAAABAAAAAAAUAAIAAAABAAIAAAAVAAEAAAABAAAAAAAVAAIAAAABAAIAAAAWAAEAAAABAAAAAAAWAAIAAAABAAIAAAAXAAEAAAABAAAAAAAXAAIAAAABAAIAAAAYAAEAAAACAAAAAAAYAAIAAAACAAIAAAA=")
+tile_set = SubResource("TileSet_hv21c")
+
+[node name="Spawn" type="Marker2D" parent="."]
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(390, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource("RectangleShape2D_g4txx")
+
+[node name="levelLogic" type="Node2D" parent="."]
+
+[node name="PuzzleButton" type="Area2D" parent="levelLogic"]
+position = Vector2(260, -72)
+script = ExtResource("3_btn")
+
+[node name="Sprite2D" type="Sprite2D" parent="levelLogic/PuzzleButton"]
+texture_filter = 1
+texture = ExtResource("4_mysc")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/PuzzleButton"]
+shape = SubResource("RectangleShape2D_btn")
+
+[node name="LaserPlayerOnly" type="StaticBody2D" parent="levelLogic"]
+position = Vector2(160, -16)
+script = ExtResource("5_laser")
+pass_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="levelLogic/LaserPlayerOnly"]
+offset_left = -4.0
+offset_top = -32.0
+offset_right = 4.0
+offset_bottom = 32.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/LaserPlayerOnly"]
+shape = SubResource("RectangleShape2D_laser")
+
+[node name="LaserExit" type="StaticBody2D" parent="levelLogic" node_paths=PackedStringArray("linked_buttons")]
+position = Vector2(330, -16)
+script = ExtResource("5_laser")
+pass_mode = 1
+linked_buttons = [NodePath("../PuzzleButton")]
+
+[node name="ColorRect" type="ColorRect" parent="levelLogic/LaserExit"]
+offset_left = -4.0
+offset_top = -32.0
+offset_right = 4.0
+offset_bottom = 32.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/LaserExit"]
+shape = SubResource("RectangleShape2D_laser")
+
+[node name="BouncePad" type="Area2D" parent="levelLogic"]
+position = Vector2(210, 12)
+script = ExtResource("6_pad")
+
+[node name="ColorRect" type="ColorRect" parent="levelLogic/BouncePad"]
+offset_left = -12.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 4.0
+color = Color(1, 0.75, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/BouncePad"]
+shape = SubResource("RectangleShape2D_pad")

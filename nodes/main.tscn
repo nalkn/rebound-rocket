@@ -10,6 +10,8 @@ size = Vector2(12, 12)
 [node name="Node2D" type="Node2D" unique_id=387917660]
 script = ExtResource("3_y2wr3")
 
+[node name="LevelContainer" type="Node2D" parent="." unique_id=164496468]
+
 [node name="MyPlayer" type="CharacterBody2D" parent="." unique_id=1954422455]
 collision_layer = 2
 collision_mask = 9
@@ -24,5 +26,3 @@ shape = SubResource("RectangleShape2D_2om7a")
 
 [node name="Camera2D" type="Camera2D" parent="MyPlayer" unique_id=986956675]
 zoom = Vector2(3, 3)
-
-[node name="LevelContainer" type="Node2D" parent="." unique_id=164496468]

@@ -1,0 +1,135 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://nodes/scripts/menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://m7k6pspjck1l" path="res://assets/sprite-player.png" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://7ywpd2duen8p" path="res://assets/tileset-ground.png" id="3_ground"]
+[ext_resource type="Texture2D" path="res://assets/sprite-exit-active.png" id="4_exit"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bg"]
+texture = ExtResource("3_ground")
+1:0/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bg"]
+sources/0 = SubResource("TileSetAtlasSource_bg")
+
+[node name="Menu" type="Control"]##
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="BackgroundLevel" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="BackgroundLevel"]
+position = Vector2(180, -36)
+zoom = Vector2(3, 3)
+
+[node name="Ground" type="TileMapLayer" parent="BackgroundLevel"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wIAAAAAAAIAAAAAAAEAAAABAAAAAAAAAAIAAAABAAIAAAABAAEAAAABAAAAAAABAAIAAAABAAIAAAACAAEAAAABAAAAAAACAAIAAAABAAIAAAADAAEAAAABAAAAAAADAAIAAAABAAIAAAAEAAEAAAABAAAAAAAEAAIAAAABAAIAAAAJAAEAAAABAAAAAAAJAAIAAAABAAIAAAAKAAEAAAABAAAAAAAKAAIAAAABAAIAAAALAAEAAAABAAAAAAALAAIAAAABAAIAAAAMAAEAAAABAAAAAAAMAAIAAAABAAIAAAANAAEAAAABAAAAAAANAAIAAAABAAIAAAAOAAEAAAABAAAAAAAOAAIAAAABAAIAAAAPAAEAAAABAAAAAAAPAAIAAAABAAIAAAAQAAEAAAABAAAAAAAQAAIAAAABAAIAAAARAAEAAAABAAAAAAARAAIAAAABAAIAAAASAAEAAAABAAAAAAASAAIAAAABAAIAAAATAAEAAAABAAAAAAATAAIAAAABAAIAAAAUAAEAAAABAAAAAAAUAAIAAAABAAIAAAAVAAEAAAABAAAAAAAVAAIAAAABAAIAAAAWAAEAAAABAAAAAAAWAAIAAAABAAIAAAAXAAEAAAABAAAAAAAXAAIAAAABAAIAAAAYAAEAAAACAAAAAAAYAAIAAAACAAIAAAA=")
+tile_set = SubResource("TileSet_bg")
+
+[node name="ExitSprite" type="Sprite2D" parent="BackgroundLevel"]
+texture_filter = 1
+position = Vector2(320, 8)
+texture = ExtResource("4_exit")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.06, 0.1, 0.45)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Logo" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="ReboundLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0.35, 0.2, 0.02, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.02, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 84
+text = "REBOUND"
+horizontal_alignment = 1
+
+[node name="RocketRow" type="HBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="RLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0.35, 0.2, 0.02, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.02, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 84
+text = "R"
+
+[node name="PlayerO" type="Control" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+
+[node name="Sprite" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow/PlayerO"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -52.0
+offset_right = 52.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+pivot_offset = Vector2(52, 52)
+texture = ExtResource("2_player")
+stretch_mode = 5
+
+[node name="CketLabel" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer/Logo/RocketRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0.35, 0.2, 0.02, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.02, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 84
+text = "CKET"
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Jouer"

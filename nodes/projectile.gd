@@ -2,8 +2,10 @@ class_name Projectile
 extends CharacterBody2D
 
 const TEXTURE := preload("res://assets/sprite-projectile-0.png")
+const TEXTURE_BOUNCED := preload("res://assets/sprite-projectile-1.png")
+const SFX_BOUNCE := preload("res://assets/audio/bounce.wav")
 
-var speed := 400.0
+var speed := 240.0
 var max_bounces := 50
 var lifetime := 5.0
 var direction := Vector2.RIGHT
@@ -16,6 +18,9 @@ func _ready() -> void:
 
 	var sprite := Sprite2D.new()
 	sprite.texture = TEXTURE
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.scale = Vector2(1.5, 1.5)
+	z_index = 10
 	add_child(sprite)
 
 	var circle := CircleShape2D.new()
@@ -31,7 +36,19 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(velocity * delta)
 	if collision:
+		if collision.get_collider() is LaserGate:
+			queue_free()
+			return
 		velocity = velocity.bounce(collision.get_normal())
+		var sfx := AudioStreamPlayer.new()
+		sfx.stream = SFX_BOUNCE
+		sfx.volume_db = -6.0
+		sfx.finished.connect(sfx.queue_free)
+		get_parent().add_child(sfx)
+		sfx.play()
 		bounces += 1
+		var spr := get_child(0) as Sprite2D
+		if spr and bounces == 1:
+			spr.texture = TEXTURE_BOUNCED
 		if bounces > max_bounces:
 			queue_free()

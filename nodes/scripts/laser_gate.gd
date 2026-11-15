@@ -10,6 +10,10 @@ enum PassMode {
 
 const LAYER_BLOCKS_PLAYER := 8   
 const LAYER_BLOCKS_BALL := 16    
+const MYSC_TEX := preload("res://assets/tileset-mysc.png")
+const CAP_TOP_REGION := Rect2(32, 0, 16, 4)
+const BEAM_REGION := Rect2(32, 4, 16, 8)
+const CAP_BOTTOM_REGION := Rect2(32, 12, 16, 4)
 
 @export var pass_mode: PassMode = PassMode.NONE:
 	set(value):
@@ -26,6 +30,36 @@ const LAYER_BLOCKS_BALL := 16
 
 
 func _ready() -> void:
+	var rect := get_node_or_null("ColorRect")
+	if rect:
+		rect.visible = false
+	if not get_node_or_null("BeamSprite"):
+		var beam := Sprite2D.new()
+		beam.name = "BeamSprite"
+		beam.texture = MYSC_TEX
+		beam.region_enabled = true
+		beam.region_rect = BEAM_REGION
+		beam.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		beam.scale = Vector2(1.0, 7.0)
+		add_child(beam)
+
+		var top_cap := Sprite2D.new()
+		top_cap.name = "TopCap"
+		top_cap.texture = MYSC_TEX
+		top_cap.region_enabled = true
+		top_cap.region_rect = CAP_TOP_REGION
+		top_cap.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		top_cap.position = Vector2(0, -30)
+		add_child(top_cap)
+
+		var bot_cap := Sprite2D.new()
+		bot_cap.name = "BottomCap"
+		bot_cap.texture = MYSC_TEX
+		bot_cap.region_enabled = true
+		bot_cap.region_rect = CAP_BOTTOM_REGION
+		bot_cap.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		bot_cap.position = Vector2(0, 30)
+		add_child(bot_cap)
 	for btn in linked_buttons:
 		if btn:
 			btn.toggled.connect(_on_button_toggled)
@@ -45,21 +79,28 @@ func _update_from_buttons() -> void:
 
 
 func _apply_mode() -> void:
-	visible = enabled
+	var beam := get_node_or_null("BeamSprite") as Sprite2D
 	if not enabled:
 		collision_layer = 0
+		if beam:
+			beam.visible = false
 		return
 
+	if beam:
+		beam.visible = true
+	var beam_color := Color.WHITE
 	match pass_mode:
 		PassMode.NONE:
 			collision_layer = LAYER_BLOCKS_PLAYER | LAYER_BLOCKS_BALL
-			modulate = Color(1.0, 0.25, 0.25, 0.85)
+			beam_color = Color(1.0, 0.25, 0.25, 0.9)
 		PassMode.BALL_ONLY:
 			collision_layer = LAYER_BLOCKS_PLAYER
-			modulate = Color(0.25, 0.75, 1.0, 0.85)
+			beam_color = Color(0.25, 0.75, 1.0, 0.9)
 		PassMode.PLAYER_ONLY:
 			collision_layer = LAYER_BLOCKS_BALL
-			modulate = Color(0.25, 1.0, 0.45, 0.85)
+			beam_color = Color(0.25, 1.0, 0.45, 0.9)
 		PassMode.BOTH:
 			collision_layer = 0
-			modulate = Color(1.0, 1.0, 1.0, 0.35)
+			beam_color = Color(1.0, 1.0, 1.0, 0.35)
+	if beam:
+		beam.modulate = beam_color
