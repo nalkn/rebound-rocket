@@ -3,17 +3,15 @@ extends Area2D
 
 signal toggled(active: bool)
 
-const REGION_ACTIVE := Rect2(0, 0, 16, 16)
-const REGION_INACTIVE := Rect2(16, 0, 16, 16)
 const SFX_BUTTON := preload("res://assets/audio/button.wav")
 
 @export var is_active: bool = false
-@export var reset_delay: float = 0.0
-@export var min_bounces: int = 0
+@export var link_color: LaserGate.LinkColor = LaserGate.LinkColor.RED:
+	set(value):
+		link_color = value
+		_update_visual()
 
 @onready var sprite: Sprite2D = $Sprite2D
-
-var _reset_timer: SceneTreeTimer = null
 
 
 func _ready() -> void:
@@ -24,26 +22,14 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Projectile and body.bounces >= min_bounces:
+	if body is Projectile:
 		is_active = not is_active
 		_update_visual()
-		var sfx := AudioStreamPlayer.new()
-		sfx.stream = SFX_BUTTON
-		sfx.finished.connect(sfx.queue_free)
-		add_child(sfx)
-		sfx.play()
+		BaseLevel.play_sfx(self, SFX_BUTTON)
 		toggled.emit(is_active)
-		if is_active and reset_delay > 0.0:
-			var timer := get_tree().create_timer(reset_delay)
-			_reset_timer = timer
-			timer.timeout.connect(func() -> void:
-				if _reset_timer == timer and is_active:
-					is_active = false
-					_update_visual()
-					toggled.emit(false)
-			)
 
 
 func _update_visual() -> void:
 	if sprite:
-		sprite.region_rect = REGION_ACTIVE if is_active else REGION_INACTIVE
+		var y_off := 80 if is_active else 96
+		sprite.region_rect = Rect2(int(link_color) * 16, y_off, 16, 16)
