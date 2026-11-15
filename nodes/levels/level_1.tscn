@@ -61,7 +61,8 @@ shape = SubResource("RectangleShape2D_g4txx")
 [node name="levelLogic" type="Node2D" parent="." unique_id=295831791]
 
 [node name="Ceiling" type="StaticBody2D" parent="levelLogic" unique_id=691950160]
-position = Vector2(390, -120)
+position = Vector2(667, -113)
+scale = Vector2(0.2799976, 1)
 
 [node name="ColorRect" type="ColorRect" parent="levelLogic/Ceiling" unique_id=995562771]
 offset_left = -390.0
@@ -69,6 +70,7 @@ offset_top = -8.0
 offset_right = 390.0
 offset_bottom = 8.0
 color = Color(0.25, 0.28, 0.35, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/Ceiling" unique_id=138104815]
 shape = SubResource("RectangleShape2D_ceil")
@@ -176,6 +178,7 @@ offset_top = -48.0
 offset_right = 8.0
 offset_bottom = 48.0
 color = Color(0.25, 0.28, 0.35, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelLogic/Shield2" unique_id=1567451097]
 shape = SubResource("RectangleShape2D_wall")
@@ -196,7 +199,6 @@ shape = SubResource("RectangleShape2D_wall")
 [node name="Button3" type="Area2D" parent="levelLogic" unique_id=1936220479]
 position = Vector2(640, -70)
 script = ExtResource("3_btn")
-min_bounces = 2
 link_color = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="levelLogic/Button3" unique_id=36218429]
