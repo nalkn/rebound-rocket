@@ -44,4 +44,6 @@ func _on_level_completed() -> void:
 	if current_index < LEVELS.size():
 		call_deferred("load_level", current_index)
 	else:
-		print("Jeu terminé !")
+		var fw := Fireworks.new()
+		fw.global_position = player.global_position
+		add_child(fw)
