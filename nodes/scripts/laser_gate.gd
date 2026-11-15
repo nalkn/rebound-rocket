@@ -10,6 +10,8 @@ enum PassMode {
 
 const LAYER_BLOCKS_PLAYER := 8   
 const LAYER_BLOCKS_BALL := 16    
+const MYSC_TEX := preload("res://assets/tileset-mysc.png")
+const LASER_REGION := Rect2(32, 0, 16, 16)
 
 @export var pass_mode: PassMode = PassMode.NONE:
 	set(value):
@@ -26,6 +28,18 @@ const LAYER_BLOCKS_BALL := 16
 
 
 func _ready() -> void:
+	var rect := get_node_or_null("ColorRect")
+	if rect:
+		rect.visible = false
+	if not get_node_or_null("Sprite2D"):
+		var spr := Sprite2D.new()
+		spr.name = "Sprite2D"
+		spr.texture = MYSC_TEX
+		spr.region_enabled = true
+		spr.region_rect = LASER_REGION
+		spr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		spr.scale = Vector2(1.0, 4.0)
+		add_child(spr)
 	for btn in linked_buttons:
 		if btn:
 			btn.toggled.connect(_on_button_toggled)
