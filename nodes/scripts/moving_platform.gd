@@ -2,7 +2,7 @@ class_name MovingPlatform
 extends AnimatableBody2D
 
 @export var move_offset := Vector2(80, 0)
-@export var speed: float = 40.0
+@export var speed: float = 20.0
 @export var linked_buttons: Array[PuzzleButton] = []
 
 var _start_pos: Vector2

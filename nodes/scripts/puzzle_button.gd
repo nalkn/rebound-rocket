@@ -6,7 +6,6 @@ signal toggled(active: bool)
 const SFX_BUTTON := preload("res://assets/audio/button.wav")
 
 @export var is_active: bool = false
-@export var min_bounces: int = 0
 @export var link_color: LaserGate.LinkColor = LaserGate.LinkColor.RED:
 	set(value):
 		link_color = value
@@ -23,7 +22,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Projectile and body.bounces >= min_bounces:
+	if body is Projectile:
 		is_active = not is_active
 		_update_visual()
 		BaseLevel.play_sfx(self, SFX_BUTTON)

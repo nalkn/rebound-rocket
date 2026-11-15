@@ -44,9 +44,9 @@ func _ready() -> void:
 	if rect:
 		rect.visible = false
 	if not get_node_or_null("BeamSprite"):
-		_add_part("BeamSprite", Rect2(32, 4, 16, 8), Vector2.ZERO, Vector2(1.0, 7.0))
 		_add_part("TopCap", Rect2(0, 64, 16, 4), Vector2(0, -30))
 		_add_part("BottomCap", Rect2(0, 68, 16, 4), Vector2(0, 30))
+		_add_part("BeamSprite", Rect2(32, 4, 16, 8), Vector2.ZERO, Vector2(1.0, 7.25))
 	for btn in linked_buttons:
 		if btn:
 			btn.toggled.connect(func(_a: bool) -> void: _update_from_buttons())

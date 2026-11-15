@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -225.0
+const JUMP_VELOCITY = -275.0
 const SFX_SHOOT := preload("res://assets/audio/shoot.wav")
 
 

@@ -24,7 +24,7 @@ func _ready() -> void:
 	add_child(sprite)
 
 	var circle := CircleShape2D.new()
-	circle.radius = TEXTURE.get_width() / 2.0
+	circle.radius = 5.0
 	var shape := CollisionShape2D.new()
 	shape.shape = circle
 	add_child(shape)
