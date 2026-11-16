@@ -14,11 +14,10 @@ const SFX_BUTTON := preload("res://assets/audio/button.wav")
 @onready var sprite: Sprite2D = $Sprite2D
 
 
-func _ready() -> void:
-	collision_layer = 0
-	collision_mask = 4
-	body_entered.connect(_on_body_entered)
-	_update_visual()
+func _update_visual() -> void:
+	if sprite:
+		var y_off := 80 if is_active else 96
+		sprite.region_rect = Rect2(int(link_color) * 16, y_off, 16, 16)
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -29,7 +28,9 @@ func _on_body_entered(body: Node2D) -> void:
 		toggled.emit(is_active)
 
 
-func _update_visual() -> void:
-	if sprite:
-		var y_off := 80 if is_active else 96
-		sprite.region_rect = Rect2(int(link_color) * 16, y_off, 16, 16)
+func _ready() -> void:
+	collision_layer = 0
+	collision_mask = 4
+	body_entered.connect(_on_body_entered)
+	_update_visual()
+	

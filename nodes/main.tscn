@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsk36uu3rrv0b"]
 
-[ext_resource type="Script" uid="uid://dbui36ainc6wf" path="res://my_player.gd" id="1_ufc4x"]
+[ext_resource type="Script" uid="uid://dbui36ainc6wf" path="res://nodes/scripts/my_player.gd" id="1_ufc4x"]
 [ext_resource type="Texture2D" uid="uid://m7k6pspjck1l" path="res://assets/sprite-player.png" id="3_ufc4x"]
 [ext_resource type="Script" uid="uid://ct7syob7pc0rl" path="res://nodes/scripts/main.gd" id="3_y2wr3"]
 
@@ -20,6 +20,13 @@ script = ExtResource("1_ufc4x")
 [node name="Sprite2D" type="Sprite2D" parent="MyPlayer" unique_id=1335929160]
 texture_filter = 1
 texture = ExtResource("3_ufc4x")
+
+[node name="EyeCover" type="Polygon2D" parent="MyPlayer" unique_id=341938894]
+polygon = PackedVector2Array(-2, -2, 2, -2, 2, 2, -2, 2)
+
+[node name="EyePupil" type="Polygon2D" parent="MyPlayer" unique_id=426133891]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -2, 2, -2, 2, 2, -2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MyPlayer" unique_id=1148187225]
 shape = SubResource("RectangleShape2D_2om7a")

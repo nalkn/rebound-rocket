@@ -24,19 +24,14 @@ static func play_sfx(parent: Node, stream: AudioStream, volume_db: float = 0.0) 
 	sfx.play()
 
 
-func _ready() -> void:
-	exit_zone.collision_layer = 0
-	exit_zone.collision_mask = 2
-	exit_zone.body_entered.connect(_on_exit_zone_body_entered)
-	for child in level_logic.get_children():
-		if child is PuzzleButton:
-			_buttons.append(child)
-			child.toggled.connect(func(_a: bool) -> void: _update_exit_state())
-	_update_exit_state()
-
-
 func get_spawn_position() -> Vector2:
 	return spawn_point.global_position
+
+
+func _on_exit_zone_body_entered(body: Node2D) -> void:
+	if body.name == "MyPlayer" and exit_unlocked:
+		play_sfx(get_tree().current_scene, SFX_PORTAL)
+		level_completed.emit()
 
 
 func _update_exit_state() -> void:
@@ -50,7 +45,12 @@ func _update_exit_state() -> void:
 	exit_sprite.texture = EXIT_ACTIVE_TEX if exit_unlocked else EXIT_LOCKED_TEX
 
 
-func _on_exit_zone_body_entered(body: Node2D) -> void:
-	if body.name == "MyPlayer" and exit_unlocked:
-		play_sfx(get_tree().current_scene, SFX_PORTAL)
-		level_completed.emit()
+func _ready() -> void:
+	exit_zone.collision_layer = 0
+	exit_zone.collision_mask = 2
+	exit_zone.body_entered.connect(_on_exit_zone_body_entered)
+	for child in level_logic.get_children():
+		if child is PuzzleButton:
+			_buttons.append(child)
+			child.toggled.connect(func(_a: bool) -> void: _update_exit_state())
+	_update_exit_state()

@@ -1,17 +1,7 @@
-[gd_scene format=4 uid="uid://b5fassmhvwsmf"]
+[gd_scene format=3 uid="uid://b5fassmhvwsmf"]
 
 [ext_resource type="Script" uid="uid://dx5472mon8yax" path="res://nodes/scripts/menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://m7k6pspjck1l" path="res://assets/sprite-player.png" id="2_player"]
-[ext_resource type="Texture2D" uid="uid://7ywpd2duen8p" path="res://assets/tileset-ground.png" id="3_ground"]
-[ext_resource type="Texture2D" uid="uid://cbpvt3sggyvyv" path="res://assets/sprite-exit-active.png" id="4_exit"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bg"]
-texture = ExtResource("3_ground")
-1:0/0 = 0
-1:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_bg"]
-sources/0 = SubResource("TileSetAtlasSource_bg")
 
 [node name="Menu" type="Control" unique_id=1077019830]
 layout_mode = 3
@@ -21,22 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
-
-[node name="BackgroundLevel" type="Node2D" parent="." unique_id=1912587937]
-
-[node name="Camera2D" type="Camera2D" parent="BackgroundLevel" unique_id=1694810943]
-position = Vector2(180, -36)
-zoom = Vector2(3, 3)
-
-[node name="Ground" type="TileMapLayer" parent="BackgroundLevel" unique_id=578560459]
-texture_filter = 1
-tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wIAAAAAAAIAAAAAAAEAAAABAAAAAAAAAAIAAAABAAIAAAABAAEAAAABAAAAAAABAAIAAAABAAIAAAACAAEAAAABAAAAAAACAAIAAAABAAIAAAADAAEAAAABAAAAAAADAAIAAAABAAIAAAAEAAEAAAABAAAAAAAEAAIAAAABAAIAAAAJAAEAAAABAAAAAAAJAAIAAAABAAIAAAAKAAEAAAABAAAAAAAKAAIAAAABAAIAAAALAAEAAAABAAAAAAALAAIAAAABAAIAAAAMAAEAAAABAAAAAAAMAAIAAAABAAIAAAANAAEAAAABAAAAAAANAAIAAAABAAIAAAAOAAEAAAABAAAAAAAOAAIAAAABAAIAAAAPAAEAAAABAAAAAAAPAAIAAAABAAIAAAAQAAEAAAABAAAAAAAQAAIAAAABAAIAAAARAAEAAAABAAAAAAARAAIAAAABAAIAAAASAAEAAAABAAAAAAASAAIAAAABAAIAAAATAAEAAAABAAAAAAATAAIAAAABAAIAAAAUAAEAAAABAAAAAAAUAAIAAAABAAIAAAAVAAEAAAABAAAAAAAVAAIAAAABAAIAAAAWAAEAAAABAAAAAAAWAAIAAAABAAIAAAAXAAEAAAABAAAAAAAXAAIAAAABAAIAAAAYAAEAAAACAAAAAAAYAAIAAAACAAIAAAA=")
-tile_set = SubResource("TileSet_bg")
-
-[node name="ExitSprite" type="Sprite2D" parent="BackgroundLevel" unique_id=1451216014]
-texture_filter = 1
-position = Vector2(320, 8)
-texture = ExtResource("4_exit")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=35039392]
 

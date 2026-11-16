@@ -9,6 +9,16 @@ const ACTIVE_TEX := preload("res://assets/sprite-jumppad-active.png")
 var _sprite: Sprite2D = null
 
 
+func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and body.name == "MyPlayer":
+		body.velocity.y = jump_boost
+		_sprite.texture = ACTIVE_TEX
+		get_tree().create_timer(0.2).timeout.connect(func() -> void:
+			if is_instance_valid(_sprite):
+				_sprite.texture = IDLE_TEX
+		)
+
+
 func _ready() -> void:
 	collision_layer = 0
 	collision_mask = 2
@@ -25,13 +35,3 @@ func _ready() -> void:
 		_sprite.position.y = -4.0
 		add_child(_sprite)
 	_sprite.texture = IDLE_TEX
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D and body.name == "MyPlayer":
-		body.velocity.y = jump_boost
-		_sprite.texture = ACTIVE_TEX
-		get_tree().create_timer(0.2).timeout.connect(func() -> void:
-			if is_instance_valid(_sprite):
-				_sprite.texture = IDLE_TEX
-		)
